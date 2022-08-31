@@ -1,0 +1,60 @@
+﻿@model JN_Aplicacion_Proyecto.Entities.ProductoObj
+
+@{
+    ViewData["Title"] = "RegistrarJuego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="h1" style="text-align:center;">Registro de Juegos</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+         @using (Html.BeginForm("RegistrarJuego", "Producto", FormMethod.Post))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           <div class="form-group">
+                <label asp-for="ID_TIPO" class="control-label">Consola</label>
+                <input asp-for="ID_TIPO" class="form-control" />
+                <span asp-validation-for="ID_TIPO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMPRESA" class="control-label">Desarrolladora</label>
+                <input asp-for="EMPRESA" class="form-control" />
+                <span asp-validation-for="EMPRESA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NOMBRE" class="control-label">Nombre del Juego</label>
+                <input asp-for="NOMBRE" class="form-control" />
+                <span asp-validation-for="NOMBRE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DESCRIPCION" class="control-label">Descripcion</label>
+                <input asp-for="DESCRIPCION" class="form-control" />
+                <span asp-validation-for="DESCRIPCION" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PRECIO" class="control-label">Precio</label>
+                <input asp-for="PRECIO" class="form-control" />
+                <span asp-validation-for="PRECIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IMAGE_URL" class="control-label">Imagen del Juego</label>
+                <input asp-for="IMAGE_URL" class="form-control" />
+                <span asp-validation-for="IMAGE_URL" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Agregar al Catalago" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="ConsultarJuegos">Volver al Catalogo</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

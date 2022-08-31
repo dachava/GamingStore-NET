@@ -1,0 +1,48 @@
+﻿@model JN_Aplicacion.Entities.PersonaObj
+
+@{
+    ViewData["Title"] = "RegistrarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">Registro</h1>
+
+<h4 style="text-align:center">Agregue los datos para ser parte de nuestra comunidad</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("RegistrarUsuario", "Persona", FormMethod.Post))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NOMBRE" class="control-label">Nombre</label>
+                <input asp-for="NOMBRE" class="form-control" />
+                <span asp-validation-for="NOMBRE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="APELLIDO" class="control-label">Apellido</label>
+                <input asp-for="APELLIDO" class="form-control" />
+                <span asp-validation-for="APELLIDO" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="EMAIL" class="control-label">Correo ELectronico</label>
+                <input asp-for="EMAIL" class="form-control" />
+                <span asp-validation-for="EMAIL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CONTRASENA" class="control-label">Contraseña</label>
+                <input asp-for="CONTRASENA" class="form-control" type="password"/>
+                <span asp-validation-for="CONTRASENA" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

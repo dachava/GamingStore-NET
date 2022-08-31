@@ -1,0 +1,144 @@
+﻿@model JN_Aplicacion_Proyecto.Entities.ContactoObj
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+ .pie-pagina{
+  background-image: url(img/footer.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  padding-bottom: 100px;
+}
+.form-pie-pagina input, .form-pie-pagina textarea, .btn-enviar{
+  border-color: #000;
+
+}
+.form-pie-pagina input::placeholder, .form-pie-pagina textarea::placeholder{
+ color: #000;
+
+}
+
+</style>
+
+<div class="text-center">
+    <h1 class="display-4"><FONT color="blue">Fide</FONT><FONT color="green">-</FONT><FONT color="red">Gaming</FONT></h1>
+    <p>¡Los Mejores Precios del Mercado!</p>
+</div>
+
+<div class="row pb-5">
+      <div class="col-12 col-md-4">
+            <img src="img/PSPLogo.jpg" class="w-100"/>
+           <p class="text-white px-3 py-2" style="background-color:darkblue">@Html.ActionLink("Play Station", "FiltrarJuego", "Producto", new { ID_TIPO = 1 }, new { @class = "nav-link text-white" })</p>
+        </div>
+           <div class="col-12 col-md-4">
+            <img src="img/xbox.png" class="w-100"/>
+            <p class="text-white px-3 py-2" style="background-color:green">@Html.ActionLink("X-Box", "FiltrarJuego", "Producto", new { ID_TIPO = 3 }, new { @class = "nav-link text-white" })</p>
+        </div>
+         <div class="col-12 col-md-4">
+             <img src="img/NintendoMB.jpg" class="w-100"/>
+             <p class="text-white px-3 py-2" style="background-color:red">@Html.ActionLink("Nintendo", "FiltrarJuego", "Producto", new { ID_TIPO = 2 }, new { @class = "nav-link text-white" })</p>
+             
+         </div>
+     </div>
+
+      <div class="row pb-5 "> 
+
+      <div class="col-12 col-md-6">
+        <img src="img/products.jpg" class="w-100"/>
+      </div>
+      
+      <div class="col-12 col-md-6">
+      <h1 class= "tit-exp" style="float:right">!Los Mejores Video Juegos del Mercado a su Alcance!</h1>
+        <p>Contamos con los mejores juegos para las personas amantes de los video juegos.<br/> 
+          Ofrecemos video juegos de distintaas categorías, para todas las edades y las principales consolas del mercado.<br /> 
+          ¡Juegos que van para los más niños, hasta los más grandes de la casa!
+      <br />
+  Será un placer atenderle en nuestras instalaciones, o bien, puede contactarnos mediante las redes sociales, o página web</p>
+     </div>
+    </div>
+          <!--Sobre Nosotros -->
+          
+          <div class="row">
+              <div class="col-12 text-center text.white p-5 bg-naranja">
+                  <h1>Sobre Nosotros</h1>
+                  <p>Somos una tineda virtual que se dedica a la venta de video juegos, 100% originales y en las consolas más importantes del mercado. Ofrecemos la mejor de la calidad para el entretenimiento de nuestros clientes.</p>
+              </div>
+          </div>
+
+    <div class="row p-5 justify-content-between"> 
+              <div class="col-12">
+                  <p class="text-center"> ¡Los Mejores en Entretenimiento! </p>
+              </div>
+              <div class="col-12 col-md-6 text-white" style="background-image: url(img/tlou2.jpg);background-position: bottom;
+    background-size: cover;
+    padding: 150px 20px 20px 20px;" data-aos="fade-up">
+                  <h2>Para los más grandes</h2>
+                  <p>The Last of Us 2</p>
+              </div>
+              <div class="col-12 col-md-6  text-white" style="background-image: url(img/Zelda.jpg);background-position: bottom;
+    background-size: cover;
+    padding: 150px 20px 20px 20px;" data-aos="fade-up">
+              <h2>Para todas las edades</h2>
+                  <p>The Legend of Zelda</p>
+              </div>
+          </div>
+           <div class="row">
+              <div class="col-12 text-center text.white p-5">
+                  <h1>Contáctenos</h1>
+                  <p>Para más información, envíenos un mensaje y estaremos contactándole próximamente</p>
+              </div>
+          </div>
+
+          <!--Formulario Contacto-->
+             <div class="row pie-pagina w-100" style=" background-image: url(img/cielo.jpg);background-size: cover;background-repeat: no-repeat; border-color: #000;">
+          <div class="col-12">
+              <br />
+              <br />
+              <br /> 
+              <br />
+            <div class="row">
+                @using (Html.BeginForm("Index", "HomePage", FormMethod.Post))
+{
+                <br />
+              <div class="col-12 col-md-6"> <br />
+                <form method="post">
+                  <div class="form-group">
+                   <!-- <input type="text" class="form-control bg-transparent btn-outline-dark rounded-0"  placeholder="Nombre"/> -->
+                     @Html.TextBoxFor(Model => Model.Nombre, new { Class = "form-control bg-transparent btn-outline-dark rounded-0", placeholder="Nombre" })
+                  </div>
+                  <br />
+                   <div class="form-group">
+                    <input type="text" class="form-control bg-transparent btn-outline-dark rounded-0" placeholder="Apellidos"/>
+                  </div>
+                  <br />
+                  <div class="form-group">
+                    <!--<input type="email" class="form-control  bg-transparent btn-outline-dark rounded-0" name="receptor"  placeholder="Correo"/>-->
+                    @Html.TextBoxFor(Model => Model.Correo, new { Class = "form-control bg-transparent btn-outline-dark rounded-0", placeholder="Correo Electronico"})
+                  </div> <br />
+                  <div class="form-group">
+                    <input type="text" class="form-control  bg-transparent btn-outline-dark rounded-0"  placeholder="Dirección de Vivienda"/>
+                  </div> <br />
+                  <div class="form-group">
+                    <input type="text" class="form-control  bg-transparent btn-outline-dark rounded-0"  placeholder="Teléfono"/>
+                  </div> <br />
+                  <div class="form-group">
+                        @Html.TextAreaFor(Model => Model.body, new { Class = "form-control bg-transparent btn-outline-dark rounded-0", placeholder="Mensaje"})
+                   <!-- <textarea class="form-control  bg-transparent btn-outline-dark rounded-0" name="asunto"  placeholder="Asunto"></textarea>-->
+                  </div> <br />
+                  <button type="submit" class="btn btn-outline-dark rounded-0 px-4" onclick="">Enviar</button>      
+                </form>
+                <h3 style="color:black">@ViewData["MENSAJE"]</h3>
+              </div>
+              <div class="col-12 col-md-6"><h1 class="titulo-curs">¡Será un Placer Atenderle!</h1></div> 
+              <br />
+              <br /> 
+              <br />
+               <br />
+              <br /> 
+              <br />
+              }
+            </div>
+          </div>
+        </div>
+        

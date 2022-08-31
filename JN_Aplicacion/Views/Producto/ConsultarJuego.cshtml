@@ -1,0 +1,123 @@
+﻿@model JN_Aplicacion_Proyecto.Entities.ProductoObj
+
+@{
+    ViewData["Title"] = "ConsultarJuego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+     int? ID_PRODUCTO = Context.Session.GetInt32("ID_PRODUCTO");
+    int? IDUsuario = Context.Session.GetInt32("IDUsuario");
+}
+
+<h1 class="h1" style="text-align:center;">Detalles del Juego</h1>
+@*<!--
+<div>
+    <h4 class="h4">Producto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("ID Producto")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID_PRODUCTO)
+        </dd>
+        <dt class = "col-sm-2">
+              @Html.DisplayName("Tipo de Producto")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ID_TIPO)
+        </dd>
+        <dt class = "col-sm-2">
+              @Html.DisplayName("Empresa")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EMPRESA)
+        </dd>
+        <dt class = "col-sm-2">
+              @Html.DisplayName("Nombre")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+        <dt class = "col-sm-2">
+             @Html.DisplayName("Descripción")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+        <dt class = "col-sm-2">
+              @Html.DisplayName("Precio")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PRECIO)
+        </dd>
+        <dt class = "col-sm-2">
+             @Html.DisplayName("Imagen")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IMAGE_URL)
+        </dd>
+    </dl>
+</div>
+-->*@
+<div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="card" style="width:20em;margin:10px;">
+                        @*<img src="model => model.IMAGE_URL" class="card-img-top" />*@
+                        @* <img src= "@Url.Content(model.IMAGE_URL)" alt="Image" />*@
+                         <img src="@Html.DisplayFor(model =>model.IMAGE_URL)" class="card-img-top"/>
+                        
+                        <div class="card-body">
+                            <div class="card-title">
+                               <h4> @Html.DisplayFor(model => model.NOMBRE) </h4> 
+                               @* <h2 style="text-align:center">model => model.NOMBRE</h2>*@
+                            </div>
+                            <div class="card-title">
+                                <h5> @Html.DisplayFor(model => model.DESCRIPCION) </h5> 
+                               @* <h2 style="text-align:center">model => model.DESCRIPCION</h2>*@
+                            </div>
+                            <div class="card-text">
+                                <h5> @Html.DisplayFor(model => model.EMPRESA) </h5> 
+                                @*<p>Consola:model => model.EMPRESA</p>*@
+                            </div>
+                            <div class="card-price">
+                                <h5> ₡@Html.DisplayFor(model => model.PRECIO) </h5> 
+                                @*<p>Precio: model => model.Precio</p>*@
+                            </div>
+                            @{
+                                if (Context.Session.GetString("Token") != null )
+                                {
+                                    <a class="nav-link" asp-area="" asp-controller="Carrito" asp-action="InsertarAlCarrito">Agregar al Carrito</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <br />
+<div>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    <a asp-action="ConsultarJuegos">Volver al Catalogo</a>
+    </div>
+    </div>
+
+    @section scripts
+{
+<script src="~/js/Functions.js" asp-append-version="true"></script>
+<script src=~/lib/jquery/dist/jquery.js></script>
+<script type="text/javascript">
+    $('.card').hover(
+        function(){
+            $(this).animate({
+                marginTop:"-=1%",
+                marginBottom:"+1%"
+            },200)
+        },
+        function(){
+            $(this).animate({
+                 marginTop:"+=1%",
+                marginBottom:"-1%"
+            })
+        }
+    )
+</script>
+}
+

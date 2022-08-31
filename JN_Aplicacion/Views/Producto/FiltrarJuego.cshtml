@@ -1,0 +1,127 @@
+﻿@model IEnumerable<JN_Aplicacion_Proyecto.Entities.ProductoObj>
+
+@{
+    ViewData["Title"] = "FiltrarJuego";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (Context.Session.GetInt32("TipoDeJuego") == 1)
+    {
+    <div class="row">
+        <div class="col-md-3">
+            </div>
+                <div class="col-md-6">
+                <img src=~/Img/PSLOGO.png class="w-100 h-100" />
+                </div>
+            <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row p-6 justify-content-between"> 
+        <div class="col-12">
+            <p class="text-center"> ¡Conozca nuestros productos de la consola PlayStation! </p>
+        </div>
+    </div>
+    }
+    if (Context.Session.GetInt32("TipoDeJuego") == 2)
+    {
+    <div class="row">
+        <div class="col-md-3">
+            </div>
+                <div class="col-md-6">
+                <img src=~/Img/LogoNintendo.png class="w-100 h-100" />
+                </div>
+            <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row p-6 justify-content-between"> 
+        <div class="col-12">
+            <p class="text-center"> ¡Conozca nuestros productos de la consola Nintendo! </p>
+        </div>
+    </div>
+    }
+    if (Context.Session.GetInt32("TipoDeJuego") == 3)
+    {
+    <div class="row">
+        <div class="col-md-3">
+            </div>
+                <div class="col-md-6">
+                <img src=~/Img/XBoxLogo.png class="w-100 h-100" />
+                </div>
+            <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row p-6 justify-content-between"> 
+        <div class="col-12">
+            <p class="text-center"> ¡Conozca nuestros productos de la consola XBOX! </p>
+        </div>
+    </div>
+       
+
+    }
+
+}
+
+ <tbody>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+               <div class="col-12 col-md-4">
+                    <div class="card" style="width:20em;margin:10px;">
+                        <img src="@item.IMAGE_URL" class="card-img-top" />
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h2 style="text-align:center">@item.NOMBRE</h2>
+                            </div>
+                            <div class="card-title">
+                                <h5 style="text-align:center">@item.DESCRIPCION</h5>
+                            </div>
+                            <div class="card-text">
+                                <p style="text-align:center"> @item.EMPRESA</p>
+                            </div>
+                            <div class="card-price">
+                                <p style="text-align:center">Precio: ₡@item.PRECIO</p>
+                            </div>
+                            @{
+                                if (Context.Session.GetString("Token") != null && Context.Session.GetInt32("TipoUsuario") == 1)
+                                {
+                                    <p style="text-align:center">
+                                    @Html.ActionLink("✏️", "EditarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO }) |
+                                    @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO })  |
+                                    @Html.ActionLink("🗑", "EliminarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO })
+                                   </p>
+                                 }
+                                else
+                                {
+                                    <p style="text-align:center"> @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO  }) </p>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+        </div>
+    </tbody>
+<!-- </table> -->
+@section scripts
+{
+<script src="~/js/Functions.js" asp-append-version="true"></script>
+<script src=~/lib/jquery/dist/jquery.js></script>
+<script type="text/javascript">
+    $('.card').hover(
+        function(){
+            $(this).animate({
+                marginTop:"-=1%",
+                marginBottom:"+1%"
+            },200)
+        },
+        function(){
+            $(this).animate({
+                 marginTop:"+=1%",
+                marginBottom:"-1%"
+            })
+        }
+    )
+</script>
+}

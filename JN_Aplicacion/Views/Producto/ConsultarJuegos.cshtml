@@ -1,0 +1,140 @@
+﻿@model IEnumerable<JN_Aplicacion_Proyecto.Entities.ProductoObj>
+@using JN_Aplicacion.Entities
+@using JN_Aplicacion_Proyecto.Entities;
+@using Microsoft.AspNetCore.Http; 
+@{
+    ViewData["Title"] = "ConsultarJuegos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h1 class="h1" style="text-align:center;">Catalogo de Juegos</h1>
+<br/>
+   <div class="row p-6 justify-content-between"> 
+              <div class="col-12 col-md-4 text-white" style="background-image: url(https://i.pinimg.com/736x/2f/76/86/2f7686c1e9a1b653aa0d81568af1ab87.jpg);background-position: bottom;
+    background-size: cover;
+    padding: 150px 20px 20px 20px;" data-aos="fade-up">
+              </div>
+              <div class="col-12 col-md-4  text-white" style="background-image: url(https://images3.alphacoders.com/106/thumb-1920-1065466.png);background-position: bottom;
+    background-size: cover;
+    padding: 150px 20px 20px 20px;" data-aos="fade-up">
+              </div>
+              <div class="col-12 col-md-4  text-white" style="background-image: url(https://fondosmil.com/fondo/53551.jpg);background-position: bottom;
+    background-size: cover;
+    padding: 150px 20px 20px 20px;" data-aos="fade-up">
+              </div>
+          </div>
+@{
+    if (Context.Session.GetString("Token") != null && Context.Session.GetInt32("TipoUsuario") == 1)
+    {
+        <p>
+            <a asp-action="RegistrarJuego">Nuevo Producto</a>
+        </p>
+    }
+    else
+    {
+
+    }
+}
+
+  <!-- <table class="table table-hover" id="tableProductos"> -->
+    <!--
+    <thead>
+        <tr>
+           <th scope="col">
+    @Html.DisplayNameFor(model => model.EMPRESA)
+            </th>
+            <th scope="col">
+    @Html.DisplayNameFor(model => model.NOMBRE)
+            </th>
+            <th scope="col">
+    @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </th>
+            <th scope="col">
+    @Html.DisplayNameFor(model => model.PRECIO)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    -->
+    <tbody>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-4">
+                    <div class="card" style="width:20em;margin:10px;">
+                        <img src="@item.IMAGE_URL" class="card-img-top" />
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h2 style="text-align:center">@item.NOMBRE</h2>
+                            </div>
+                            <div class="card-title">
+                                <h5 style="text-align:center">@item.DESCRIPCION</h5>
+                            </div>
+                            <div class="card-text">
+                                <p style="text-align:center"> @item.EMPRESA</p>
+                            </div>
+                            <div class="card-price">
+                                <p style="text-align:center">Precio: ₡@item.PRECIO</p>
+                            </div>
+                            @{
+                                if (Context.Session.GetString("Token") != null && Context.Session.GetInt32("TipoUsuario") == 1)
+                                {
+                                    <p style="text-align:center">
+                                    @Html.ActionLink("✏️", "EditarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO }) |
+                                    @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO })  |
+                                    @Html.ActionLink("🗑", "EliminarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO })
+                                   </p>
+                                 }
+                                else
+                                {
+                                    <p style="text-align:center"> @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO  }) </p>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <!--
+                @*  @{
+                    if (Context.Session.GetString("Token") == null)
+                    {
+                    <td>
+                    @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO  })
+                    </td>
+                    } else
+                    {
+                    <td>
+                    @Html.ActionLink("✏️", "EditarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO }) |
+                    @Html.ActionLink("🔎", "ConsultarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO  }) |
+                    @Html.ActionLink("🗑", "EliminarJuego", new { ID_PRODUCTO = item.ID_PRODUCTO })
+                    </td>
+                    }
+                    }*@
+                        </tr> -->
+            }
+        </div>
+    </tbody>
+<!-- </table> -->
+@section scripts
+{
+<script src="~/js/Functions.js" asp-append-version="true"></script>
+<script src=~/lib/jquery/dist/jquery.js></script>
+<script type="text/javascript">
+    $('.card').hover(
+        function(){
+            $(this).animate({
+                marginTop:"-=1%",
+                marginBottom:"+1%"
+            },200)
+        },
+        function(){
+            $(this).animate({
+                 marginTop:"+=1%",
+                marginBottom:"-1%"
+            })
+        }
+    )
+</script>
+}

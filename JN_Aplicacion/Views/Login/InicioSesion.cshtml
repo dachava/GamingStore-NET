@@ -1,0 +1,56 @@
+﻿@model JN_Aplicacion.Entities.PersonaObj
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+@using(Html.BeginForm("InicioSesion","Login",FormMethod.Post))
+{
+      <div class="jumbotron jumbotron-fluid" style="background-color: lightgray">
+   <div class=row>
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6">
+             <h1 style="text-align:center">Iniciar Sesión</h1>
+              <img src="~/Img/controlLog.png"  style="width:100px; height:100px; align-content:center; margin-left:42%"/>
+        </div>
+          <div class="col-3"></div>
+
+   </div>
+        
+        <div class="container-fluid">
+              
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label style="text-align:center">Email</label>
+                @Html.TextBoxFor(Model => Model.EMAIL, new { Class = "form-control" })
+            </div>
+            <div class="col-4"></div>
+        </div>
+
+         <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label style="text-align:center">Contraseña</label>
+                @Html.PasswordFor(Model => Model.CONTRASENA, new { Class = "form-control" })
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <br/>
+         <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <input type="submit" class="btn btn-outline-dark" style="text-align:center; margin-left:45%" value="Ingresar">
+                <br/>
+                <a href="../Persona/RegistrarUsuario" style="text-align:center; margin-left:45%">Registrarse</a>
+            </div>
+            
+            <div class="col-4"></div>
+            <br/>
+        </div>
+    </div>
+
+    </div> 
+}
